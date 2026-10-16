@@ -41,7 +41,7 @@ you can contact us at [contact@auq.info](mailto:contact@auq.info) or (for bugs, 
 
 - proxy inspo from [achroma-ubg](https://github.com/achroma-ubg/engine$0).
 - vm from [hyperbeam](https://github.com/hyperbeam$0).
-- ai api from [groq](https://github.com/groq$0) & [nook](https://nook.nyxlearning.org/$0).
+- ai api from [groq](https://github.com/groq$0), [nook](https://nook.nyxlearning.org/$0) & [emis](https://emis.zxs-is-very.cool).
 - hosted on [cloudflare](https://github.com/cloudflare$0).
 - proxy hosted on [render](https://render.com/$0).
 
