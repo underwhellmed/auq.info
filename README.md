@@ -1,7 +1,7 @@
 
 # __auq.info__
 
-[auq.info](https://auq.info/) was made by me, [@conduuit.](https://discord.com/users/1509608855120908318) to solve one struggle – the lack of privacy in educational settings. thats why I made auq, which is short for auqa, a mis-spelled version of the word aqua that I lowkey thought was pretty tuff. 
+[auq.info](https://auq.info/) was made by me, [@conduuit.](https://github.com/underwhellmed), [1aqlla](https://github.com/dubcatalt2-lab),   [faiz basha](https://github.com/faizbasha40k), [sols](https://github.com/ohsols) and [zxs](https://github.com/zx8s) to solve one struggle – the lack of privacy in educational settings. thats why I made auq, which is short for auqa, a mis-spelled version of the word aqua that I lowkey thought was pretty tuff. 
 
 we drop links all the time in the discord server and on our site repository! check the [links]() page! (or, you can check [/links](https://github.com/underwhellmed/auq.info/blob/main/links/links.txt))
 
