@@ -2,21 +2,15 @@
 <html lang="en">
 <head>
 <script>
-/* AUQ OWNER CONFIG — all API keys live here at the top of the file.
-   Use Base64-encoded keys. Base64 is NOT encryption: visitors can decode any key embedded here.
-   For a public site, keep keys on a server and call a private proxy instead. */
 window.AUQ_OWNER_CONFIG = {
-  encodedKeys: {
-    emis: "ZW1pcy03YjQxYmFmMGRjNjExMGVmN2U3YTlhYmM5NTAwMWQ3NA",       // Base64-encoded emis API key
-    nook: "bl9hcGlfSDBFOEhLRkNSQzNIVldERlFIdGg3eGpnTHo0a3RIQUtMR0pLbTVHT2liMA==",       // Base64-encoded nook API key
-    openrouter: "c2stb3ItdjEtN2I3NWIxY2E1Y2M4ZDgzZDA3Y2VmNjQwNGNlMzBiYjZmODEzMmM0MTA5YjhmYzFk", // Base64-encoded openrouter API key
-    groq: "Z3NrX2prWEQ1YVFtWUFwNG9HTzgyV0IyV0dkeWIzRllrMldFM01TMjYwTEZOU1VmYXZnNHdKSUs="        // Base64-encoded Groq API key
+  "encodedKeys": {
+    "openrouter": "c2stb3ItdjEtN2I3NWIxY2E1Y2M4ZDgzZDA3Y2VmNjQwNGNlMzBiYjZmODEzMmM0MTA5YjhmYzFk"
   },
-  api: {
-    emis: { endpoint: "", authPrefix: "Bearer " },
-    nook: { endpoint: "", authPrefix: "Bearer " },
-    openrouter: { endpoint: "https://openrouter.ai/api/v1/chat/completions", authPrefix: "Bearer " },
-    groq: { endpoint: "https://api.groq.com/openai/v1/chat/completions", authPrefix: "Bearer " }
+  "api": {
+    "openrouter": {
+      "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+      "authPrefix": "Bearer "
+    }
   }
 };
 </script>
@@ -24,13 +18,7 @@ window.AUQ_OWNER_CONFIG = {
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f5f6f8">
 <title>AUQ AI</title>
-<style>
-:root{--bg:#f5f6f8;--panel:#fff;--ink:#202127;--muted:#858b97;--line:#e5e7ec;--soft:#f0f2f5;--accent:#22252b;--green:#378567;--radius:20px;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink)}
-*{box-sizing:border-box}html,body{margin:0;width:100%;min-width:0}body{height:100dvh;overflow:hidden;background:var(--bg);-webkit-user-select:none;user-select:none} .message-text,.reasoning-content,textarea,input,.menu-option,.history-title{ -webkit-user-select:text;user-select:text } .app{min-height:0} .mini-action{display:inline-grid;place-items:center;width:31px;height:29px;padding:5px;border:1px solid transparent;border-radius:8px} .mini-action svg,.icon-btn svg,.send svg,.new-chat svg,.soft-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0} .mini-action:hover{border-color:var(--line)} .icon-btn{color:#59616d} .new-chat svg{width:15px;height:15px} .message-actions{gap:4px} .message-actions .mini-action[aria-label]{position:relative} .embed-mode .rail{max-width:272px}button,input,textarea{font:inherit}button{border:0;cursor:pointer;color:inherit}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #aeb8c8;outline-offset:2px}
-.app{height:100dvh;display:flex;flex-direction:column}.topbar{height:72px;flex-shrink:0;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 24px;gap:18px;background:#fbfcfd}.brand{font-size:27px;font-weight:900;letter-spacing:-2px}.brand span{color:#9da3ad}.top-actions{margin-left:auto;display:flex;align-items:center;gap:10px}.status-pill{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:8px 11px;color:#727987;font-size:12px;background:white}.dot{width:7px;height:7px;border-radius:50%;background:#b4bac4}.dot.ready{background:#46a27d}.icon-btn{width:40px;height:40px;border:1px solid var(--line);background:white;border-radius:14px;display:grid;place-items:center}.icon-btn:hover,.soft-btn:hover{background:#e9ecf1}.layout{display:flex;flex:1;min-height:0}.rail{width:272px;flex:0 0 272px;border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:16px;background:#f9fafb;min-height:0}.new-chat{width:100%;height:44px;border-radius:14px;background:#22252b;color:white;font-weight:650;display:flex;align-items:center;justify-content:center;gap:9px}.new-chat:hover,.send:hover{background:#3a3d44}.rail-label{font-size:10px;font-weight:850;letter-spacing:1.2px;color:#969ca7;padding:0 7px;margin:4px 0 8px}.history{overflow:auto;min-height:0;display:grid;align-content:start;gap:4px}.history-item{width:100%;display:flex;align-items:center;gap:9px;padding:11px 10px;border-radius:12px;text-align:left;background:transparent;color:#666e7a;font-size:13px}.history-item:hover{background:#eceef2}.history-item.active{background:#e7e9ee;color:#25272d}.history-item .history-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}.history-item .del{opacity:0;color:#9197a2;padding:2px 4px;border-radius:6px;background:transparent}.history-item:hover .del{opacity:1}.rail-bottom{margin-top:auto;border-top:1px solid var(--line);padding-top:14px;color:#8b929e;font-size:11px;line-height:1.6}.main{flex:1;min-width:0;display:flex;flex-direction:column;position:relative}.toolbar{height:64px;flex-shrink:0;display:flex;align-items:center;gap:10px;padding:0 25px;border-bottom:1px solid var(--line);background:#f9fafb}.toolbar-label{font-size:12px;font-weight:750;color:#858c98}.custom-select-wrap{position:relative}.select-btn{height:39px;min-width:160px;max-width:min(32vw,300px);display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:white;border-radius:12px;padding:0 12px;text-align:left;font-size:12px;font-weight:700}.select-btn .selected-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}.select-btn .chevron{color:#8e95a0;display:grid;place-items:center}.select-btn .chevron svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.select-btn:hover{border-color:#cbd0d9}.provider-badge{width:21px;height:21px;border-radius:7px;display:grid;place-items:center;background:#edf0f4;font-size:10px;font-weight:900;flex-shrink:0}.menu{display:none;position:absolute;z-index:30;top:46px;left:0;width:min(360px,calc(100vw - 30px));background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 50px #1c243018;padding:9px}.menu.open{display:block}.menu-search{width:100%;height:39px;border:1px solid var(--line);border-radius:10px;padding:0 11px;background:#fafbfc;outline:0;font-size:12px;margin-bottom:8px}.menu-list{max-height:min(360px,55vh);overflow:auto;display:grid;gap:2px}.menu-option{display:flex;align-items:center;gap:9px;width:100%;padding:10px;border-radius:10px;text-align:left;background:white;font-size:12px}.menu-option:hover,.menu-option.selected{background:#f0f2f5}.menu-option .opt-main{min-width:0;flex:1}.menu-option strong{display:block;font-size:12px;font-weight:700;overflow-wrap:anywhere}.menu-option small{display:block;margin-top:3px;color:#9299a4;font-size:10px}.check{color:#378567;font-weight:900}.toolbar-spacer{flex:1}.key-status{font-size:11px;color:#858c98;white-space:nowrap}.key-status b{color:#4a8a6f;font-weight:700}.content{flex:1;min-height:0;overflow:auto;padding:24px clamp(16px,4vw,56px) 26px;display:flex;flex-direction:column}.conversation{width:min(820px,100%);margin:0 auto;flex:1;display:flex;flex-direction:column;gap:25px;padding-bottom:25px}.welcome{margin:auto auto 30px;text-align:center;width:min(610px,100%);padding-top:30px}.welcome-mark{font-size:36px;font-weight:900;letter-spacing:-3px}.welcome-mark span{color:#a4aab4}.welcome h1{font-size:clamp(28px,4vw,39px);letter-spacing:-1.6px;margin:18px 0 8px}.welcome p{color:#8b929e;font-size:14px;line-height:1.6;margin:0}.capability-row{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-top:23px}.capability{background:#fff;border:1px solid var(--line);padding:8px 11px;border-radius:999px;color:#7c8490;font-size:11px}.message{display:flex;gap:13px;align-items:flex-start;animation:appear .18s ease}.avatar{width:34px;height:34px;border-radius:12px;background:#e8ebf0;display:grid;place-items:center;flex-shrink:0;font-size:12px;font-weight:850}.message.assistant .avatar{background:#23262d;color:white}.message-content{min-width:0;flex:1;padding-top:2px}.message-head{display:flex;align-items:center;gap:9px;margin-bottom:6px}.message-head strong{font-size:12px}.message-head small{font-size:10px;color:#9aa1ab}.message-text{font-size:14px;line-height:1.75;white-space:pre-wrap;overflow-wrap:anywhere}.message-text code{background:#f0f2f5;border-radius:5px;padding:2px 5px;font-size:12px}.message-text pre{white-space:pre-wrap;overflow:auto;background:#20232a;color:#f4f5f7;padding:14px;border-radius:12px}.message-actions{display:flex;gap:6px;margin-top:9px}.mini-action{font-size:10px;background:transparent;color:#9299a4;padding:5px 7px;border-radius:7px}.mini-action:hover{background:#f0f2f5;color:#4d5562}.composer-area{width:min(820px,100%);margin:0 auto}.composer{border:1px solid #dfe2e8;background:#fff;border-radius:21px;padding:12px;box-shadow:0 8px 30px #20242b08}.composer:focus-within{border-color:#c9ced7;box-shadow:0 8px 30px #20242b0d}.composer textarea{display:block;width:100%;border:0;outline:0;resize:none;min-height:55px;max-height:180px;padding:6px 7px;background:transparent;font-size:14px;line-height:1.6;color:var(--ink)}.composer-bottom{display:flex;align-items:center;gap:8px;padding-top:7px}.soft-btn{height:33px;padding:0 11px;border-radius:10px;background:#f1f3f6;color:#707886;font-size:11px;font-weight:650}.composer-hint{font-size:10px;color:#a0a6b0;margin-left:3px}.send{margin-left:auto;width:38px;height:36px;border-radius:12px;background:#22252b;color:white;display:grid;place-items:center;font-size:17px}.footnote{text-align:center;color:#a1a7b1;font-size:10px;margin-top:11px;line-height:1.5}.modal-back{position:fixed;inset:0;background:#171a2080;backdrop-filter:blur(5px);display:none;place-items:center;z-index:100;padding:18px}.modal-back.open{display:grid}.modal{width:min(520px,100%);max-height:85dvh;overflow:auto;background:white;border-radius:20px;padding:22px;box-shadow:0 25px 80px #0002}.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.modal-head h2{margin:0;font-size:20px;letter-spacing:-.5px}.close{width:33px;height:33px;border-radius:50%;background:#f0f2f5;font-size:20px}.modal p{font-size:13px;color:#7f8793;line-height:1.6}.field{display:grid;gap:7px;margin:15px 0}.field label{font-size:11px;font-weight:750;color:#727a87}.field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px;background:#fafbfc;font-size:13px}.primary{padding:11px 15px;background:#22252b;color:white;border-radius:11px;font-size:12px;font-weight:700}.secondary{padding:10px 13px;background:#eef0f4;border-radius:11px;font-size:12px;font-weight:650}.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:17px}.toast{position:fixed;right:18px;bottom:18px;z-index:200;background:#22252b;color:white;padding:12px 15px;border-radius:12px;font-size:12px;box-shadow:0 10px 30px #0002;max-width:calc(100vw - 36px)}.hidden{display:none!important}.mobile-history{display:none}.thinking-indicator{display:flex;align-items:center;gap:10px;padding:11px 13px;border:1px solid var(--line);border-radius:13px;background:#fff;color:#818895;font-size:12px;width:max-content;max-width:100%}.thinking-dots{display:flex;gap:4px}.thinking-dots i{display:block;width:5px;height:5px;border-radius:50%;background:#858c98;animation:thinkPulse 1.15s infinite ease-in-out}.thinking-dots i:nth-child(2){animation-delay:.15s}.thinking-dots i:nth-child(3){animation-delay:.3s}.reasoning-box{margin:0 0 10px;border:1px solid var(--line);border-radius:11px;background:#fafbfc;overflow:hidden}.reasoning-box summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:10px 12px;color:#777f8c;font-size:11px;font-weight:700}.reasoning-box summary::-webkit-details-marker{display:none}.reasoning-box summary:before{content:"";width:7px;height:7px;border-right:1.7px solid currentColor;border-bottom:1.7px solid currentColor;transform:rotate(-45deg);transition:transform .15s;flex-shrink:0}.reasoning-box[open] summary:before{transform:rotate(45deg)}.reasoning-content{padding:0 12px 12px;color:#737b88;font-size:12px;line-height:1.65;white-space:pre-wrap}@keyframes thinkPulse{0%,60%,100%{opacity:.28;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
-@keyframes appear{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-@media(max-width:760px){.topbar{height:60px;padding:0 14px}.brand{font-size:24px}.status-pill{display:none}.layout{position:relative}.rail{display:none}.toolbar{height:auto;min-height:62px;padding:10px 12px;gap:7px;flex-wrap:wrap}.toolbar-label{display:none}.select-btn{min-width:0;max-width:43vw;padding:0 9px;height:37px;gap:6px}.select-btn .provider-badge{width:19px;height:19px}.key-status{display:none}.content{padding:14px 12px 18px}.welcome{padding-top:25px}.welcome h1{font-size:29px}.welcome-mark{font-size:31px}.message{gap:9px}.avatar{width:30px;height:30px;border-radius:10px}.message-text{font-size:13px}.composer{border-radius:17px;padding:9px}.composer textarea{font-size:13px}.composer-hint{display:none}.footnote{font-size:9px}.mobile-history{display:grid}.menu{width:min(330px,calc(100vw - 24px))}.menu-list{max-height:45vh}}
-</style>
+<link rel="stylesheet" href="./workspace.css">
 </head>
 <body>
 <div class="app">
@@ -42,32 +30,27 @@ window.AUQ_OWNER_CONFIG = {
 <div class="layout">
 <aside class="rail" id="rail">
   <button class="new-chat" id="newChat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>New chat</span></button>
-  <section style="min-height:0;display:flex;flex-direction:column;flex:1"><div class="rail-label">YOUR CHATS</div><div class="history" id="history"></div></section>
+  <section style="min-height:0;display:flex;flex-direction:column;flex:1"><div class="rail-label">CONVERSATIONS</div><div class="history" id="history"></div></section>
   <div class="rail-bottom">AUQ AI · Your space to think.<br><span id="storageHint">Conversations are stored locally.</span></div>
 </aside>
 <main class="main">
-  <div class="toolbar">
-    <span class="toolbar-label">PROVIDER</span>
-    <div class="custom-select-wrap" id="providerWrap">
-      <button class="select-btn" id="providerBtn" aria-expanded="false"><span class="provider-badge" id="providerBadge">E</span><span class="selected-text" id="providerLabel">emis</span><span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></button>
-      <div class="menu" id="providerMenu"><input class="menu-search" id="providerSearch" placeholder="Find provider…" autocomplete="off"><div class="menu-list" id="providerOptions"></div></div>
-    </div>
-    <span class="toolbar-label">MODEL</span>
-    <div class="custom-select-wrap" id="modelWrap">
-      <button class="select-btn" id="modelBtn" aria-expanded="false"><span class="provider-badge" aria-hidden="true">M</span><span class="selected-text" id="modelLabel">openai/gpt-5.6-luna</span><span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></button>
-      <div class="menu" id="modelMenu"><input class="menu-search" id="modelSearch" placeholder="Search models or capabilities…" autocomplete="off"><div class="menu-list" id="modelOptions"></div></div>
-    </div>
-    <div class="toolbar-spacer"></div><div class="key-status" id="keyStatus">Built-in access</div>
-  </div>
   <div class="content" id="content">
     <div class="conversation" id="conversation">
       <div class="welcome" id="welcome">
-        <div class="welcome-mark">auq<span>.</span></div><h1>What can I help with?</h1><p>Think, create, explore, and build — all in one place.</p>
+        <div class="welcome-mark">auq<span>.</span></div><h1>A little room to think.</h1><p>Start with a question. See where it takes you.</p>
         <div class="capability-row"><span class="capability">Reasoning</span><span class="capability">Coding</span><span class="capability">Vision &amp; images</span><span class="capability">Research</span><span class="capability">Writing</span></div>
       </div>
     </div>
     <div class="composer-area">
-      <div class="composer"><textarea id="prompt" rows="2" placeholder="Message AUQ…" aria-label="Message AUQ"></textarea><div class="composer-bottom"><button class="soft-btn" id="attachBtn" title="Attach a text file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Attach</button><input type="file" id="fileInput" class="hidden" accept=".txt,.md,.csv,.json,.html,.css,.js,.py,.xml,.yaml,.yml"><span class="composer-hint" id="composerHint">Enter to send · Shift + Enter for a new line</span><button class="send" id="sendBtn" title="Send message" aria-label="Send message"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></div></div>
+      <div class="composer"><textarea id="prompt" rows="2" placeholder="Message AUQ…" aria-label="Message AUQ"></textarea><div class="composer-bottom"><button class="soft-btn" id="attachBtn" title="Attach a text file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Attach</button><input type="file" id="fileInput" class="hidden" accept=".txt,.md,.csv,.json,.html,.css,.js,.py,.xml,.yaml,.yml"><span class="composer-hint" id="composerHint">Shift + Enter for a new line</span><div class="custom-select-wrap" id="modelWrap">
+<button class="select-btn" id="modelBtn" aria-expanded="false" aria-controls="modelMenu" aria-label="Choose a model"><span class="provider-badge" id="modelBadge" aria-hidden="true">O</span><span class="selected-text" id="modelLabel">Choose model</span><span class="chevron" aria-hidden="true">&#8964;</span></button>
+<div class="menu" id="modelMenu" role="dialog" aria-label="Choose a model">
+<div class="model-menu-heading"><strong>Models</strong><span id="modelCount" aria-live="polite"></span><button type="button" id="modelMenuClose" aria-label="Close model list">&#215;</button></div>
+<input class="menu-search" id="modelSearch" type="search" placeholder="Search models or companies..." aria-label="Search models" autocomplete="off">
+<div class="model-companies" id="modelCompanies" aria-label="Filter by company"></div>
+<div class="menu-list" id="modelOptions"></div>
+<div class="model-menu-footer"><img class="company-icon" src="./icons/openrouter.svg" alt="">Provided through OpenRouter</div>
+</div></div><button class="send" id="sendBtn" title="Send message" aria-label="Send message"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></div></div>
       <div class="footnote">AI can make mistakes. Check important information. <span id="backendHint">Built-in provider access</span></div>
     </div>
   </div>
@@ -88,149 +71,29 @@ const API_CONFIG = window.AUQ_OWNER_CONFIG.api;
 function decodeBase64(s){if(!s||s.includes("PASTE_"))return "";try{return atob(s)}catch(e){console.warn("Invalid Base64 provider key");return ""}}
 const decodedKeys = Object.fromEntries(Object.entries(ENCODED_KEYS).map(([k,v])=>[k,decodeBase64(v)]));
 const providerModels = {
-emis: `openai/gpt-5.6-luna
-openai/gpt-5.4-mini
-anthropic/claude-haiku-4-5
-mistral/mistral-small-2603
-openai/gpt-oss-120b
-google/gemma4-31b
-anthropic/claude-opus-5-5
-anthropic/claude-sonnet-5-5
-anthropic/claude-fable-5-1
-openai/gpt-6-1-sol
-openai/gpt-5-6
-openai/gpt-5-5
-openai/gpt-6-astra
-google/gemini-3-8-flash
-deepseek/deepseek-v4-pro
-moonshotai/kimi-k3
-moonshotai/kimi-k2-6
-xai/grok-4-7
-other/qwen-3-7-max
-zai/glm-5-3
-zai/glm-5-3-flash
-google/gemini-3-1-flash-image
-google/gemini-3-1-flash-lite-image
-openai/gpt-image-2
-blackforest/flux-2-pro
-microsoft/mai-image-2-5
-other/krea-2-medium-turbo
-other/krea-2-medium
-openai/gpt-5-4
-zai/glm-5-2
-anthropic/claude-sonnet-5
-openai/gpt-5.6-sol
-anthropic/claude-opus-4-8
-anthropic/claude-opus-5
-anthropic/claude-fable-5
-qwen/qwen-3.5-plus
-qwen/qwen-3.5-plus-thinking
-qwen/qwen-3.6-plus
-qwen/qwen-3.6-plus-thinking
-qwen/qwen-3.7-plus
-qwen/qwen-3.7-plus-thinking
-qwen/qwen-3.6-max-preview
-qwen/qwen-3.6-max-preview-thinking
-qwen/qwen-3.7-max
-qwen/qwen-3.7-max-thinking
-qwen/qwen-3.8-max
-qwen/qwen-3.8-max-thinking
-qwen/qwen-3.5-omni-plus
-other/xiaomi-mimo-2.5
-anthropic/claude-opus-4-6
-anthropic/claude-opus-4-7
-deepseek/deepseek-v4-flash
-cohere/command-a
-cohere/command-a-plus
-cohere/command-a-reasoning
-cohere/command-a-vision
-cohere/command-r-plus
-cohere/command-r
-cohere/command-r7b
-cohere/aya-expanse-32b
-cohere/aya-vision-32b
-cohere/north-mini-code
-openai/gpt-5-nano
-openai/gpt-4.1-nano
-openai/gpt-4o-mini
-google/gemma-4
-google/gemini-2.5-flash-lite
-meta/llama-3.3-70b-instruct
-meta/llama-3.1-8b-instant
-deepseek/deepseek-v3.2
-tencent/tencent-hy3
-deepai/standard
-deepai/online
-huggingface/unfiltered_x
-minimax/minimax-text-01
-huggingface/vibethinker-3b
-openai/gpt-5.4-nano
-openai/gpt-4.1
-openai/gpt-4o
-amazon/nova
-google/gemma-4-31b-heretic
-huggingface/stheno-l3-8b
-meta/llama-3.2-1b
-openai/openai
-openai/openai-fast
-openai/gpt-oss
-mistral/codestral-latest
-meta/meta-llama-3_3-70b-instruct
-qwen/qwen3.5-397b-a17b
-mistral/mistral-small-3.2-24b-instruct-2506
-mistral/mistral-nemo-instruct-2407
-qwen/qwen3.6-27b
-qwen/qwen3.5-9b
-qwen/qwen2.5-vl-72b-instruct
-mistral/mistral-7b-instruct-v0.3
-openai/gpt-oss-20b
-poolside/poolside-laguna-xs-2.1
-nvidia/nvidia-nemotron-3-nano-omni-30b-a3b-reasoning
-nvidia/nvidia-nemotron-3-super-120b-a12b
-nvidia/nvidia-nemotron-3-ultra-550b-a55b
-rednote/dots-studio-dots-3-note-preview
-liquidai/liquid-lfm-2.5-2.6b
-nvidia/nvidia-nemotron-3.5-lightning
-poolside/poolside-laguna-s-2.1
-blackforest/image
-adobe/self-forcing
-lightricks/ltx-2
-minimax/minimax-h3-turbo
-lightricks/ltx2-5-distilled`.trim().split(/\n+/),
-nook: `google/gemini-3.8-flash
-openai/gpt-5.6-luna`.trim().split(/\n+/),
-openrouter: `nvidia/nemotron-3-ultra-550b-a55b:free
-nvidia/nemotron-3.5-lightning:free
-poolside/laguna-s-2.1:free
-nvidia/nemotron-3-super-120b-a12b:free
-thinkingmachines/inkling:free
-nvidia/nemotron-3.5-super-vl:free
-cohere/north-mini-code:free
-thinkingmachines/inkling-small:free
-nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
-google/gemma-4-26b-a4b-it:free
-google/gemma-4-31b-it:free
-fish-audio/s2.1-pro-free:free
-inception/mercury-decide:free
-respan/span-01-lite:free
-nvidia/nemotron-3-embed-1b:free
-nvidia/llama-nemotron-embed-vl-1b-v2:free
-liquid/lfm-2.5-embedding-350m:free
-nvidia/llama-nemotron-rerank-vl-1b-v2:free`.trim().split(/\n+/),
-groq: `openai/gpt-oss-120b
-openai/gpt-oss-20b
-whisper-large-v3
-whisper-large-v3-turbo
-llama-3.3-70b-versatile
-llama-3.1-8b-instant`.trim().split(/\n+/)
+  "openrouter": [
+    "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "nvidia/nemotron-3.5-lightning:free",
+    "poolside/laguna-s-2.1:free",
+    "nvidia/nemotron-3-super-120b-a12b:free",
+    "thinkingmachines/inkling:free",
+    "nvidia/nemotron-3.5-super-vl:free",
+    "cohere/north-mini-code:free",
+    "thinkingmachines/inkling-small:free",
+    "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+    "google/gemma-4-26b-a4b-it:free",
+    "google/gemma-4-31b-it:free",
+    "fish-audio/s2.1-pro-free:free",
+    "inception/mercury-decide:free",
+    "respan/span-01-lite:free",
+    "nvidia/nemotron-3-embed-1b:free",
+    "nvidia/llama-nemotron-embed-vl-1b-v2:free",
+    "liquid/lfm-2.5-embedding-350m:free",
+    "nvidia/llama-nemotron-rerank-vl-1b-v2:free"
+  ]
 };
-const providers = [
-{id:"emis",name:"emis",letter:"E",desc:"Multi-provider model catalog"},
-{id:"nook",name:"nook",letter:"N",desc:"Gemini Flash and GPT Luna"},
-{id:"openrouter",name:"openrouter",letter:"O",desc:"Free and hosted models"},
-{id:"groq",name:"groq",letter:"G",desc:"Fast hosted chat and audio models"}
-];
-const state = {provider:localStorage.getItem("auq_ai_provider")||"emis", model:localStorage.getItem("auq_ai_model")||"openai/gpt-5.6-luna", chats:[], activeChat:null, busy:false, attachedText:""};
+
+const state = {provider:"openrouter", model:localStorage.getItem("auq_ai_model")||"openai/gpt-5.6-luna", chats:[], activeChat:null, busy:false, attachedText:""};
 function modelCapabilities(model){
  const m=model.toLowerCase(), caps=[];
  if(/whisper/.test(m))caps.push("Audio transcription");
@@ -260,15 +123,50 @@ function selectChat(id){state.activeChat=id;renderHistory();renderMessages();if(
 function deleteChat(id,e){e?.stopPropagation();state.chats=state.chats.filter(c=>c.id!==id);if(!state.chats.length)state.chats.push({id:uid(),title:"New chat",created:now(),updated:now(),messages:[]});if(!state.chats.some(c=>c.id===state.activeChat))state.activeChat=state.chats[0].id;saveChats();renderHistory();renderMessages()}
 function renderHistory(){const list=$("#history");list.innerHTML=state.chats.map(c=>`<button class="history-item ${c.id===state.activeChat?"active":""}" data-chat="${escapeHTML(c.id)}"><span aria-hidden="true">${ICONS.chat}</span><span class="history-title">${escapeHTML(c.title||"New chat")}</span><span class="del" data-delete="${escapeHTML(c.id)}" title="Delete chat">×</span></button>`).join("");list.querySelectorAll("[data-chat]").forEach(b=>b.onclick=e=>{if(e.target.closest("[data-delete]"))return;selectChat(b.dataset.chat)});list.querySelectorAll("[data-delete]").forEach(b=>b.onclick=e=>deleteChat(b.dataset.delete,e))}
 function formatText(text){let safe=escapeHTML(text);safe=safe.replace(/```([\s\S]*?)```/g,(_,code)=>`<pre>${code.trim()}</pre>`);safe=safe.replace(/`([^`]+)`/g,"<code>$1</code>");return safe}
-function renderMessages(){const c=activeChat();if(!c)return;const conv=$("#conversation");if(!c.messages.length){conv.innerHTML=`<div class="welcome" id="welcome"><div class="welcome-mark">auq<span>.</span></div><h1>What can I help with?</h1><p>Think, create, explore, and build — all in one place.</p><div class="capability-row"><span class="capability">Reasoning</span><span class="capability">Coding</span><span class="capability">Vision &amp; images</span><span class="capability">Research</span><span class="capability">Writing</span></div></div>`;return}
+function renderMessages(){const c=activeChat();if(!c)return;const conv=$("#conversation");if(!c.messages.length){conv.innerHTML=`<div class="welcome" id="welcome"><div class="welcome-mark">auq<span>.</span></div><h1>A little room to think.</h1><p>Start with a question. See where it takes you.</p><div class="capability-row"><span class="capability">Reasoning</span><span class="capability">Coding</span><span class="capability">Vision &amp; images</span><span class="capability">Research</span><span class="capability">Writing</span></div></div>`;return}
 conv.innerHTML=c.messages.map((m,i)=>`<article class="message ${m.role==="assistant"?"assistant":"user"}"><div class="avatar">${m.role==="assistant"?"auq":"You"}</div><div class="message-content"><div class="message-head"><strong>${m.role==="assistant"?"auq":"You"}</strong><small>${escapeHTML(new Date(m.time||Date.now()).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"}))}${m.model?" · "+escapeHTML(m.model):""}</small></div>${m.role==="assistant"&&m.reasoningSummary?`<details class="reasoning-box"><summary>Reasoning summary</summary><div class="reasoning-content">${escapeHTML(m.reasoningSummary)}</div></details>`:""}<div class="message-text">${formatText(m.content||"")}</div>${m.role==="assistant"?`<div class="message-actions"><button class="mini-action" data-copy="${i}" title="Copy response" aria-label="Copy response">${ICONS.copy}</button><button class="mini-action" data-speak="${i}" title="Read response aloud" aria-label="Read response aloud">${ICONS.volume}</button><button class="mini-action" data-retry="${i}" title="Regenerate response" aria-label="Regenerate response">${ICONS.regen}</button></div>`:""}</div></article>`).join("");conv.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>{const text=c.messages[+b.dataset.copy].content;const copy=navigator.clipboard?.writeText(text);if(copy)copy.then(()=>toast("Copied response")).catch(()=>fallbackCopy(text));else fallbackCopy(text)});conv.querySelectorAll("[data-speak]").forEach(b=>b.onclick=()=>speakResponse(c.messages[+b.dataset.speak].content,b));conv.querySelectorAll("[data-retry]").forEach(b=>b.onclick=()=>regenerateFrom(+b.dataset.retry));$("#content").scrollTop=$("#content").scrollHeight}
-function updateProviderUI(){const p=currentProvider();$("#providerBadge").textContent=p.letter;$("#providerLabel").textContent=p.name;$("#modelLabel").textContent=state.model;$("#keyStatus").textContent="Built-in access";$("#backendHint").textContent=currentKey()?"Ready to chat.":"Provider access is configured by the site owner.";renderProviderOptions();renderModelOptions()}
+function updateProviderUI(){updateModelSelection();renderModelOptions()}
 function renderProviderOptions(filter=""){const q=filter.toLowerCase();$("#providerOptions").innerHTML=providers.filter(p=>(p.name+" "+p.desc).toLowerCase().includes(q)).map(p=>`<button class="menu-option ${p.id===state.provider?"selected":""}" data-provider="${p.id}"><span class="provider-badge">${p.letter}</span><span class="opt-main"><strong>${p.name}</strong><small>${p.desc} · ${providerModels[p.id].length} models</small></span>${p.id===state.provider?'<span class="check">✓</span>':""}</button>`).join("");$("#providerOptions").querySelectorAll("[data-provider]").forEach(b=>b.onclick=()=>{state.provider=b.dataset.provider;const list=providerModels[state.provider];if(!list.includes(state.model))state.model=list[0];saveState();closeMenus();updateProviderUI()})}
-function renderModelOptions(filter=""){const q=filter.toLowerCase(),list=providerModels[state.provider];let html="";Object.entries(groupedModels(list)).forEach(([group,models])=>{const matches=models.filter(m=>(m+" "+modelCapabilities(m)).toLowerCase().includes(q));if(!matches.length)return;html+=`<div class="rail-label" style="padding:9px 10px 5px;margin:0">${group.toUpperCase()} <span style="font-weight:500;letter-spacing:0">· ${matches.length}</span></div>`;html+=matches.map(m=>`<button class="menu-option ${m===state.model?"selected":""}" data-model="${escapeHTML(m)}"><span class="provider-badge" aria-hidden="true">M</span><span class="opt-main"><strong>${escapeHTML(m)}</strong><small>${escapeHTML(modelCapabilities(m))}</small></span>${m===state.model?'<span class="check">✓</span>':""}</button>`).join("")});$("#modelOptions").innerHTML=html||`<div style="padding:18px;color:#9097a3;font-size:12px">No matching models.</div>`;$("#modelOptions").querySelectorAll("[data-model]").forEach(b=>b.onclick=()=>{state.model=b.dataset.model;saveState();closeMenus();updateProviderUI();toast("Model changed")})}
+let modelCompany = '';
+const companyIcons={nvidia:'nvidia-color.svg',google:'google.png',cohere:'cohere-color.svg',poolside:'poolside-color.svg',thinkingmachines:'thinkingmachines-author.png','fish-audio':'fish-audio-author.svg',inception:'inception.svg',respan:'respan-author.png',liquid:'liquid.svg'};
+function modelIcon(model){const company=model.split('/')[0];return '<img class="company-icon" src="./icons/'+(companyIcons[company]||'openrouter.svg')+'" alt="" aria-hidden="true">';}
+function companyName(model) {
+ const id=model.split('/')[0];
+ return ({nvidia:'NVIDIA',google:'Google',openai:'OpenAI',anthropic:'Anthropic',cohere:'Cohere',poolside:'Poolside',thinkingmachines:'Thinking Machines','fish-audio':'Fish Audio',inception:'Inception',respan:'Respan',liquid:'Liquid AI'})[id]||id;
+}
+function modelName(model) {
+ return model.split('/').slice(1).join('/').replace(/:free$/,'').replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+}
+function updateModelSelection() {
+ $('#modelLabel').textContent=modelName(state.model);
+ $('#modelBadge').innerHTML=modelIcon(state.model);
+ $('#modelBtn').title=companyName(state.model)+' · '+state.model;
+ $('#backendHint').textContent=currentKey()?'Ready to chat.':'OpenRouter access is configured by the site owner.';
+}
+function renderModelOptions(filter='') {
+ const q=filter.trim().toLowerCase();
+ const catalog=providerModels.openrouter;
+ const companies=[...new Set(catalog.map(companyName))];
+ $('#modelCompanies').innerHTML=['',...companies].map(company=>`<button type="button" data-company="${escapeHTML(company)}" aria-pressed="${company===modelCompany}">${company?modelIcon(catalog.find(model=>companyName(model)===company)):""}${escapeHTML(company||'All')}</button>`).join('');
+ $('#modelCompanies').querySelectorAll('[data-company]').forEach(button=>button.onclick=event=>{event.stopPropagation();modelCompany=button.dataset.company;renderModelOptions($('#modelSearch').value)});
+ const matches=catalog.filter(model=>(!modelCompany||companyName(model)===modelCompany)&&(model+' '+modelName(model)+' '+companyName(model)).toLowerCase().includes(q));
+ $('#modelCount').textContent=matches.length+' models';
+ $('#modelOptions').innerHTML=matches.map(model=>`<button type="button" class="menu-option ${model===state.model?'selected':''}" data-model="${escapeHTML(model)}" aria-pressed="${model===state.model}"><span class="provider-badge" aria-hidden="true">${modelIcon(model)}</span><span class="opt-main"><strong>${escapeHTML(modelName(model))}</strong><small>${escapeHTML(companyName(model))} · ${escapeHTML(model)}</small></span>${model===state.model?'<span class="check" aria-hidden="true">✓</span>':''}</button>`).join('')||'<div class="model-empty">No matching models. Try another name or company.</div>';
+ $('#modelOptions').querySelectorAll('[data-model]').forEach(button=>button.onclick=()=>{state.model=button.dataset.model;saveState();closeMenus();updateProviderUI();$('#modelBtn').focus()});
+}
+
 function closeMenus(){$$(".menu").forEach(m=>m.classList.remove("open"));$$(".select-btn").forEach(b=>b.setAttribute("aria-expanded","false"))}
 function $$(s){return [...document.querySelectorAll(s)]}
-function toggleMenu(which){const menu=$("#"+which+"Menu"),was=menu.classList.contains("open");closeMenus();if(!was){menu.classList.add("open");$("#"+which+"Btn").setAttribute("aria-expanded","true");$("#"+which+"Search").value="";if(which==="provider")renderProviderOptions();else renderModelOptions();$("#"+which+"Search").focus()}}
-$("#providerBtn").onclick=()=>toggleMenu("provider");$("#modelBtn").onclick=()=>toggleMenu("model");$("#providerSearch").oninput=e=>renderProviderOptions(e.target.value);$("#modelSearch").oninput=e=>renderModelOptions(e.target.value);document.addEventListener("click",e=>{if(!e.target.closest(".custom-select-wrap"))closeMenus()});
+function toggleMenu(which){const menu=$("#"+which+"Menu"),was=menu.classList.contains("open");closeMenus();if(!was){const bounds=$('#modelBtn').getBoundingClientRect();
+menu.style.setProperty('--menu-bottom',(innerHeight-bounds.top+10)+'px');
+menu.style.setProperty('--menu-left',Math.max(12,Math.min(bounds.right-440,innerWidth-Math.min(440,innerWidth-24)-12))+'px');
+menu.style.setProperty('--menu-height',Math.max(120,bounds.top-22)+'px');
+menu.classList.add("open");$("#"+which+"Btn").setAttribute("aria-expanded","true");$("#"+which+"Search").value="";renderModelOptions();$("#"+which+"Search").focus()}}
+$("#modelBtn").onclick=()=>toggleMenu("model");$("#modelSearch").oninput=e=>renderModelOptions(e.target.value);document.addEventListener("click",e=>{if(!e.target.closest(".custom-select-wrap"))closeMenus()});
+addEventListener('resize',closeMenus);
+$('#content').addEventListener('scroll',closeMenus,{passive:true});
+$("#modelMenuClose").onclick=()=>{closeMenus();$("#modelBtn").focus()};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#modelMenu").classList.contains("open")){closeMenus();$("#modelBtn").focus()}});
 function setBusy(v){state.busy=v;$("#sendBtn").disabled=v;$("#sendBtn").innerHTML=v?"<span class=\"thinking-dots\"><i></i><i></i><i></i></span>":ICONS.send;$("#sendBtn").style.opacity=v?".6":"1"}
 function addMessage(role,content,extra={}){const c=activeChat();const m={role,content,time:now(),...extra};c.messages.push(m);c.updated=now();if(role==="user"&&c.title==="New chat")c.title=content.replace(/\s+/g," ").slice(0,42)||(state.attachedText?"Attached file":"New chat");saveChats();renderHistory();renderMessages();return m}
 function getMessagesForAPI(c){return c.messages.filter(m=>m.role==="user"||m.role==="assistant").map(m=>({role:m.role,content:m.content}))}
@@ -315,7 +213,7 @@ $("#attachBtn").onclick=()=>$("#fileInput").click();$("#fileInput").onchange=asy
 window.addEventListener("storage",e=>{if(e.key==="auq_ai_chats"){loadChats();renderHistory();renderMessages()}});
 window.addEventListener("message",e=>{if(e.data?.type==="AUQ_AI_EXPORT_CHAT"&&e.source!==window.parent){try{e.source.postMessage({type:"AUQ_AI_CHAT_DATA",chats:state.chats},e.origin)}catch(_){}}});
 window.AUQAI={exportChats:()=>JSON.parse(JSON.stringify(state.chats)),getProvider:()=>state.provider,getModel:()=>state.model};
-if(!providerModels[state.provider])state.provider="emis";if(!providerModels[state.provider].includes(state.model))state.model=providerModels[state.provider][0];saveState();
+if(!providerModels[state.provider])state.provider="openrouter";if(!providerModels[state.provider].includes(state.model))state.model=providerModels[state.provider][0];saveState();
 loadChats();updateProviderUI();renderHistory();renderMessages();
 // Lightweight deterrents only. Browser developer tools cannot be reliably disabled by page JavaScript.
 document.addEventListener("contextmenu",e=>e.preventDefault());document.addEventListener("keydown",e=>{const k=e.key.toLowerCase();if(e.key==="F12"||(e.ctrlKey&&e.shiftKey&&["i","j","c"].includes(k))||(e.metaKey&&e.altKey&&["i","j","c"].includes(k))||((e.ctrlKey||e.metaKey)&&k==="u")){e.preventDefault();e.stopPropagation()}},true);

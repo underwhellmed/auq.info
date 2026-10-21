@@ -1,8 +1,8 @@
 (() => {
-  const defaults = { theme: 'light', color: '#8bb8ff', cloak: 'khan', title: '', protect: true, engine: 'google', backdrop: 'plain', compact: false, motion: false };
+  const defaults = { theme: 'default', color: '#8bb8ff', cloak: 'khan', title: '', protect: true, engine: 'google', backdrop: 'sand', compact: false, motion: false };
   const themes = {
     light: ['Light', '#f4f5f7', '#ffffff', '#191b20', '#737d8e', '#e1e4e9', '#e8ebef', '#4168bf'],
-    default: ['Default', '#090909', '#111111', '#eeeeee', '#aaaaaa', '#292929', '#202020', '#cccccc'],
+    default: ['Jet black', '#000000', '#0a0a0a', '#f5f5f5', '#a3a3a3', '#242424', '#181818', '#eeeeee'],
     midnight: ['Midnight', '#0c1423', '#121e32', '#e5edff', '#a0b2cf', '#293952', '#1d2d46', '#8bb8ff'],
     halloween: ['Halloween', '#19110c', '#241a12', '#ffeddf', '#c6a48b', '#473121', '#342419', '#ff9a43'],
     ruby: ['Ruby', '#1b0d13', '#29131d', '#ffe8ee', '#c69da9', '#482534', '#3a1c29', '#ff7897'],
@@ -19,7 +19,8 @@
   if (!cloaks[prefs.cloak]) prefs.cloak = defaults.cloak;
   if (!engines[prefs.engine]) prefs.engine = defaults.engine;
   if (!/^#[0-9a-f]{6}$/i.test(prefs.color)) prefs.color = defaults.color;
-  if (!['plain', 'aurora', 'grid'].includes(prefs.backdrop)) prefs.backdrop = 'plain';
+  if (!['sand', 'plain', 'grid'].includes(prefs.backdrop)) prefs.backdrop = 'sand';
+  if (!saved.wallpaperVersion) prefs.backdrop = 'sand';
   function guard(event) { event.preventDefault(); event.returnValue = ''; }
   function apply() {
     const root = document.documentElement;
@@ -28,6 +29,7 @@
     if (prefs.theme === 'custom') root.style.setProperty('--accent', prefs.color);
     root.style.colorScheme = prefs.theme === 'light' ? 'light' : 'dark';
     root.dataset.backdrop = prefs.backdrop;
+    root.dataset.theme = prefs.theme;
     root.classList.toggle('compact-ui', prefs.compact);
     root.classList.toggle('reduce-motion', prefs.motion);
     const cloak = cloaks[prefs.cloak];
@@ -42,21 +44,22 @@
   function save() {
     apply();
     const status = document.getElementById('preferenceStatus');
-    try { localStorage.setItem('auq_preferences', JSON.stringify(prefs)); status.textContent = 'Saved on this device'; }
+    try { localStorage.setItem('auq_preferences', JSON.stringify({...prefs, wallpaperVersion:1})); status.textContent = 'Saved on this device'; }
     catch { status.textContent = 'Applied for this visit; storage is unavailable'; }
   }
   function mount() {
     const host = document.getElementById('preferences');
     host.innerHTML = `
-      <section class="settings-row"><div><h3>Color theme</h3><p>A palette for the whole interface.</p></div><div><div class="theme-grid">${Object.entries(themes).map(([key, colors]) => `<button class="theme-card" data-theme="${key}" aria-pressed="${prefs.theme === key}"><span class="swatches">${[colors[7], colors[5], colors[1]].map(color => `<span style="background:${color}"></span>`).join('')}</span><span>${colors[0]}</span></button>`).join('')}</div><label class="color-control" for="customAccent">Custom accent <input type="color" id="customAccent" value="${prefs.color}"></label></div></section>
-      <section class="settings-row"><div><h3>Background</h3><p>A little atmosphere for your new tab.</p></div><select id="backdrop" aria-label="Background"><option value="plain">Theme background</option><option value="aurora">Aurora glow</option><option value="grid">Subtle grid</option></select></section>
+      <section class="settings-row"><div><h3>Color theme</h3><p>A palette for the whole interface.</p></div><div><div class="theme-grid">${Object.entries(themes).map(([key, colors]) => `<button class="theme-card" data-theme="${key}" aria-pressed="${prefs.theme === key}"><span class="theme-preview" aria-hidden="true" style="--preview-bg:${colors[1]};--preview-panel:${colors[2]};--preview-accent:${key === 'custom' ? prefs.color : colors[7]};--preview-line:${colors[5]}"><span class="preview-toolbar"><i></i><i></i><i></i></span><span class="preview-sidebar"></span><span class="preview-search"></span><span class="preview-tile"></span><span class="preview-tile second"></span></span><span class="theme-caption">${colors[0]}<span class="theme-selected" aria-hidden="true">&#10003;</span></span></button>`).join('')}</div><label class="color-control" for="customAccent">Custom accent <input type="color" id="customAccent" value="${prefs.color}"></label></div></section>
+      <section class="settings-row"><div><h3>Background</h3><p>A little atmosphere for your new tab.</p></div><select id="backdrop" aria-label="Background"><option value="sand">Black sand</option><option value="plain">Theme background</option><option value="grid">Subtle grid</option></select></section>
       <section class="settings-row"><div><h3>Tab cloaking</h3><p>Change this tab's title and icon.</p></div><div class="settings-controls"><select id="cloak" aria-label="Tab cloaking"><option value="none">AUQ</option><option value="khan">Khan Academy</option><option value="docs">Google Docs</option><option value="classroom">Google Classroom</option><option value="custom">Custom title</option></select><input id="cloakTitle" aria-label="Custom tab title" placeholder="My workspace" maxlength="100"><small class="muted">Appearance only; your browsing remains visible to your network.</small></div></section>
-      <section class="settings-row"><div><h3>Close protection</h3><p>Ask before closing AUQ or an in-app tab. Browser prompts require interaction and may not appear on mobile.</p></div><label class="switch"><input id="protect" type="checkbox" role="switch" aria-label="Close protection"><span></span></label></section>
+      <section class="settings-row"><div><h3>Close protection</h3><p>Ask before leaving or closing AUQ. In-app tabs close immediately. Browser prompts require interaction and may not appear on mobile.</p></div><label class="switch"><input id="protect" type="checkbox" role="switch" aria-label="Close protection"><span></span></label></section>
       <section class="settings-row"><div><h3>Search engine</h3><p>Used for searches from either address bar.</p></div><select id="engine" aria-label="Search engine"><option value="google">Google</option><option value="duckduckgo">DuckDuckGo</option><option value="bing">Bing</option><option value="brave">Brave</option></select></section>
       <section class="settings-row"><div><h3>Comfort</h3><p>Adjust spacing and animations.</p></div><div class="comfort-options"><label><input id="compact" type="checkbox"> Compact spacing</label><label><input id="motion" type="checkbox"> Reduce motion</label></div></section>`;
     function sync() {
       host.querySelectorAll('[data-theme]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.theme === prefs.theme)));
       document.getElementById('cloakTitle').hidden = prefs.cloak !== 'custom';
+      host.querySelector('[data-theme=custom] .theme-preview').style.setProperty('--preview-accent', prefs.color);
     }
     host.querySelectorAll('[data-theme]').forEach(button => button.onclick = () => { prefs.theme = button.dataset.theme; save(); sync(); });
     ['backdrop', 'cloak', 'engine'].forEach(key => {
@@ -75,6 +78,6 @@
     document.getElementById('customAccent').oninput = event => { prefs.color = event.target.value; prefs.theme = 'custom'; save(); sync(); };
     sync();
   }
-  window.AUQSettings = { mount, confirmClose: () => !prefs.protect || confirm('Do you want to close this tab?'), searchUrl: query => engines[prefs.engine] + encodeURIComponent(query) };
+  window.AUQSettings = { mount, searchUrl: query => engines[prefs.engine] + encodeURIComponent(query) };
   apply();
 })();
